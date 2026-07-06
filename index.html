@@ -1,0 +1,1819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https:/fonts.googleapis.com/css?family=Akaya Telivigala: 100">
+    <title>KMS Education Services Group</title>
+    
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            background-color: #14151B;
+        }
+
+        .sidebar {
+            width: 10%;
+            background-color: #132A3F;
+            border-top-right-radius: 25px;
+            display: flex;
+            flex-direction: column;   
+            align-items: center;
+            padding-top: 20px 0;     
+            box-sizing: border-box;  
+            position: relative;
+            z-index: 10; 
+        }
+
+        .logo {
+            margin-top: 30px;
+            width: 70%;             
+            height: auto;         
+            border-radius: 10px;
+        }
+
+        .nav-links {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+        .top-nav {
+            margin-top: 30px;
+        }
+        .bottom-nav {
+            margin-top: auto;
+        }
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;              
+            padding: 10px 14px;
+            color: #94a3b8;         
+            text-decoration: none;     
+            font-family: sans-serif;
+            font-size: 13px;
+            border-radius: 6px;
+            transition: background 0.2s, color 0.2s; 
+        }
+        .nav-item.active {
+            background-color: #112235;
+            color: #ffffff;      
+        }
+        .nav-item:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+        }
+        .icon {
+            font-size: 16px;        
+        }
+
+
+
+        .main-content {
+            width: 90%;
+            background-color: #14151B;
+            color: #ffffff;
+            font-family: sans-serif;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .top-header {
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;            
+            padding: 15px 30px;
+            background-color: #22232e;    
+            position: relative;
+            z-index: 5;           
+            margin-left: -30px;     
+            padding-left: 50px;  
+        }
+
+        .header-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0;
+            color: #f8fafc;
+        }
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+        .search-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .search-box input {
+            background-color: #080d14;
+            border: 1px solid #1e293b;
+            border-radius: 20px;
+            padding: 8px 12px 8px 34px;
+            color: #ffffff;
+            font-size: 14px;
+            outline: none;
+            width: 200px;
+        }
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            font-size: 14px;
+            color: #64748b;
+        }
+ 
+        .profile-group {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .icon-badge {
+            position: relative;
+            font-size: 18px;
+            cursor: pointer;
+            color: #94a3b8;
+        }
+        .badge {
+            position: absolute;
+            top: -6px;
+            right: -10px;
+            background-color: #ef4444;
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+            padding: 2px 5px;
+            border-radius: 10px;
+        }
+        .profile-name {
+            font-size: 14px;
+            color: #cbd5e1;
+        }
+        .profile-avatar {
+            background-color: #0a5158;
+            color: white;
+            font-weight: bold;
+            font-size: 13px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .rectangle {
+            height: 75px;
+            overflow: hidden;
+        }
+
+        .content-section {
+            display: none;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+        .dashboard-container {
+            padding: 24px 30px;
+            font-family: sans-serif;
+        }
+
+        .sub-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .tab {
+            background-color: #1a2638;
+            color: #94a3b8;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .tab.active {
+            background-color: #0091ff; 
+            color: #ffffff;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 75% 25%;
+            gap: 24px;
+            align-items: stretch;
+            margin: 20px;
+        }
+        
+        .dashboard-grid > main,
+        .dashboard-grid > aside {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .announcement-card {
+            background-color: #0f1724;
+            border: 1px solid #1e293b;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .card-header {
+            background-color: #162235;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            color: #94a3b8;
+            font-size: 13px;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        .card-body {
+            display: flex; 
+            flex-grow: 1; 
+        }
+        
+        .hero-panel {
+            min-height: 400px; /* Changed from height to min-height */   
+            flex: 1;
+            background: linear-gradient(135deg, #0a2540 0%, #001020 100%);
+            padding: 40px 30px;
+            text-align: center;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .badge-red {
+            background-color: #ef4444;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 4px 10px;
+            border-radius: 4px;
+        }
+
+        .hero-panel h2 {
+            color: #ffcc00; 
+            font-size: 22px;
+            margin: 20px 0 10px 0;
+        }
+
+        .info-panel {
+            flex: 1;
+            background-color: #ffffff;
+            color: #334155;
+            padding: 40px 30px;
+            font-size: 13px;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .btn-mfa {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 20px;
+            border: 1px solid #ef4444;
+            color: #ef4444;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: 0.2s ease;
+        }
+
+        .btn-mfa:hover {
+            background-color: #fef2f2;
+        }
+
+        .footer-help {
+            margin-top: 15px; 
+            font-size: 11px;
+            color: #64748b;
+        }
+
+        .email {
+            color: #0091ff;
+        }
+    
+        .aside-picture-box {
+            width: 100%;
+            flex-grow: 1; 
+            background-color: #0f1724;
+            border: 1px solid #1e293b;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex; 
+        }
+
+        .aside-picture-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            display: block;
+        }
+
+        section {
+            margin: 10px; 
+            padding: 15px; 
+            background: #f8f9fa80; 
+            border-radius: 8px;
+        }
+
+        .main-content-flow {
+            width: 100%;
+            margin-top: 20px;
+            box-sizing: border-box;            
+        }
+
+        .sub-content-panel {
+            display: none ;
+            width: 100%;
+        }
+        .sub-content-panel.active {
+            display: block;
+        }
+        .grey-content-box {
+            background-color: #858585;
+            border: 1px solid #9ca3af;
+            border-radius: 12px;
+            width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+        }
+
+        .grey-content-box h2 {
+            color: #ffffff;
+            font-family: sans-serif;
+            font-size: 32px;
+            padding: 10px;
+            font-weight: bold;
+            margin: 0;
+        }
+        .grey-content-box p {
+            color: #ffffff;
+            font-family: sans-serif;   
+            padding: 10px;         
+            margin: 0;
+        }
+
+        .courses-section-wrapper {
+            width: 100%;
+            padding: 24px 30px;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        .section-title {
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 24px;
+        }
+
+        .courses-row-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+            gap: 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .course-card {
+            background-color: #121c2a;  
+            border: 1px solid #1e293b;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 10px;
+            display: flex;
+            flex-direction: column;
+            height: 430px;              
+            box-sizing: border-box;
+        }
+
+        .card-media {
+            width: 100%;
+            height: 150px;
+            background-color: #0b131f;
+        }
+
+        .card-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card-details {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .course-title {
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 1.4;
+            margin: 0 0 8px 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;        
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
+        }
+
+        .course-code, 
+        .course-schedule {
+            font-size: 11px;
+            color: #64748b;
+            margin: 0 0 6px 0;
+        }
+
+        .course-schedule {
+            margin-bottom: 16px;
+        }
+
+        .start-label {
+            margin-top: auto;       
+            color: #94a3b8;
+            font-size: 12px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 0;
+        }
+
+        .card-footer {
+            border-top: 1px solid #1e293b;
+            padding: 10px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #0f1824;
+        }
+
+        .footer-icons {
+            display: flex;
+            gap: 14px;
+        }
+
+        .static-icon {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .module-count {
+            font-size: 11px;
+            color: #64748b;
+        }
+    </style>
+</head>
+
+<body>
+    <audio id="invisible-bg-audio" loop>
+    <source src="OMORI OST - 012 Trees....mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+    </audio>
+
+
+    <div class="sidebar">
+        <img src="STD.png" class="logo">
+
+        <nav class="nav-links top-nav">
+            <a href="#" class="nav-item active" data-target="home"><span class="icon">🏠</span> Home</a>
+            <a href="#" class="nav-item" data-target="courses"><span class="icon">👤</span>Creator Info</a>
+            <a href="#" class="nav-item" data-target="paths"><span class="icon">👥</span>Kin List</a>
+            <a href="#" class="nav-item" data-target="groups"><span class="icon">🏛️</span>Fandoms</a>
+            <a href="#" class="nav-item" data-target="catalog"><span class="icon">🗂️</span>Media</a>
+            <a href="#" class="nav-item" data-target="users"><span class="icon">📢</span>Honorable Mentions</a>
+        </nav>
+
+        <nav class="nav-links bottom-nav">
+            <a href="#" class="nav-item" data-target="shortcuts"><span class="icon">📞</span>Contacts and Socials</a>
+            <a href="#" class="nav-item" data-target="help"><span class="icon">❓</span>Help</a> 
+        </nav>
+    </div>
+
+    <div class="main-content">
+
+        <div id="home" class="content-section active">
+            <header class="top-header">
+            <h1 class="header-title">KMS Project Site</h1>
+                <div class="header-actions">
+                    <div class="search-box">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" placeholder="Destroying A World That Doesn't Exist">
+                    </div>
+                
+                    <div class="profile-group">
+                        <div class="icon-badge">📩</div>
+                        <div class="icon-badge">🔔</div>
+                        <span class="profile-name">Kiezhen Yi STUDIOS</span>
+                        <div class="profile-avatar">KYS</div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-container">
+                <div class="sub-nav">
+                    <button class="tab active">Dashboard</button>
+                    <button class="tab">News</button>
+                    <button class="tab">Welcome</button>
+                </div>
+
+                <div class="dashboard-grid">
+                    <main class="left-column">
+                        <div class="announcement-card">    
+                            <div class="card-header">
+                                <span>Welcome ; To KMS Project Site !</span>
+                                <div class="card-controls">📚 💤</div>
+                            </div>
+                            
+                            <div class="card-body">    
+                                <div class="hero-panel">
+                                    <span class="badge-red">D A S H B O A R D</span>
+                                    <h2>「 KMS PROJECT SITE 」</h2>
+                                    <p class="date">Starting on July 4, 2026</p>
+                                    <p class="desc">
+                                        Produced by Kiezen Yi STUDIOS
+                                    </p>
+                                </div>
+                                
+                                <div class="info-panel">
+                                    <p style="text-align: center;">
+                                        This work contains depiction of multiple references, 
+                                        a look into the Creator's personality and how much they like
+                                        getting side-tracked, non-copyright infringement of STI Education Services Group(ELMS) Website. 
+                                    </p>
+                                    <p class="footer-help">For more information, please contact 
+                                        <a href="https://discordapp.com/users/536786949818548295" 
+                                        target="_blank" class="email">Anaximander</a>, 
+                                        <a href="https://discordapp.com/users/1107443959690702858" 
+                                        target="_blank" class="email">Luciel</a>, or
+                                        <a href="https://discordapp.com/users/1109425431620370442" 
+                                        target="_blank" class="email">Phai</a> 
+                                        on Discord.
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </main>
+
+                    <aside class="right-column">
+                        <div class="aside-picture-box">
+                            <video autoplay loop muted playsinline class="aside-video">
+                                <source src="overstimulated.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+
+        <!--creatorinfo-->
+        <div id="courses" class="content-section">
+            <header class="top-header">
+            <h1 class="header-title">About the Creator</h1>
+                <div class="header-actions">
+                    <div class="search-box">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" placeholder="Who is the Creator?...">
+                    </div>
+                
+                    <div class="profile-group">
+                        <div class="icon-badge">📩<span class="badge">08</span></div>
+                        <div class="icon-badge">🔔<span class="badge">01</span></div>
+                        <span class="profile-name">Keith Elly V. Gregorio</span>
+                        <div class="profile-avatar">KG</div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-container">
+  
+                <div class="sub-nav">
+                    <button class="tab active">Creator</button>
+                    <button class="tab">( Anaximander Veran / Luciel Yoizuki )</button>
+                </div>
+
+                <div class="grey-content-box">
+                    <p style="color: #fffffff0;">
+                        Gregorio, Keith Elly V.
+                    </p>
+                        <p style="font-size: 15px;">
+                            I face many problems with understanding myself, so in order to introduce myself,
+                            I've asked the people that I've been friends with over the years of
+                            my life, and I am forever thankful of them. <br>Especially Anki who's been
+                            with me since I was 4. 
+                        </p>    
+                                                    
+                </div>
+                    <p>
+                        Creator has always been someone reliable. They're intellectual, creative, and has a somewhat complex 
+                        personality. Keith is the friend who listens to everyone else's problems, but always
+                        keeps their own tightly locked away. Even when they finally manage to open up, it would
+                        never be their full story. They've been through alot and we are all thankful that they're
+                        still with us as of today. Keith absolutely loves complex narratives and/or storylines,
+                        have the darkest sense of humor, and has always been an empathic person. Even if they hide
+                        it behind sarcasm, detachment, or even the uncontrolled chaos they bring everywhere. - Anon
+                    </p>
+                        
+                <p>
+                    She's always been an open book when it comes to the most contraversial topics. reading
+                    explicit stories out in the open, or even go as far as listening to something suggestive.
+                    Keith has been a big part of our lives, she's both the light that drags us out of misery
+                    but also the darkness that consumes our bright joy. She's a sharp person and observes 
+                    everything, even if she's not herself. She overanalyzes everything and can read people 
+                    like an open book. She's the type of person to avoid people when she's spiraling. She knows
+                    how it feels like to carry a heavy weight. She's been pushed away by people she trusted 
+                    but she's still here, alive and well. She uses humor and sarcasm to hide from people, 
+                    she tends to be blunt but we can tell that she cares alot. <br> She has a strong side to
+                    herself but that also makes her incredibly hard on herself. But we're happy to have been 
+                    friends with her over the coarse of half of our lives. She's a loyal person, regardless, 
+                    of how hurt she is. Exactly the type to love a person so deeply but also moves on as easily 
+                    as a switch.  - Anki
+                </p>
+                    
+            </div>
+                
+        </div>
+
+
+        <!--kinlist-->
+        <div id="paths" class="content-section">
+            <header class="top-header">
+            <h1 class="header-title">Kiezhen's Multiple System (KMS) / Kin List</h1>
+                <div class="header-actions">
+                    <div class="search-box">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" placeholder="What is Kinning?">
+                    </div>
+                
+                    <div class="profile-group">
+                        <div class="icon-badge">📩<span class="badge">3.14159</span></div>
+                        <div class="icon-badge">🔔<span class="badge">1.618</span></div>
+                        <span class="profile-name">Anaximander Veran</span>
+                        <div class="profile-avatar">AV</div>
+                    </div>
+                </div>
+            </header>
+            <section>
+                <p style="color: #fcf48f;">What Is Kinning?</p>
+                <h5>Kinning is when you heavily relate to a character, whether it may be because of your personality, inner thoughts or experiences. </h5>
+            </section>
+
+            <div class="courses-section-wrapper">
+                <h2 class="section-title">My Kins</h2>
+                
+                <!--ROW 1-->
+                <div class="courses-row-grid">
+                    <div class="course-card">
+                        <div class="card-media">
+                            <img src="anaxa.jpg">
+                        </div>
+                        <div class="card-details">
+                            <h3 class="course-title">Anaxagoras</h3>
+                            <p class="course-code">SkeMma720 / Scholar of Reason</p> <br>
+                            <p class="course-schedule"> "In a world full of lies, I am the only truth."</p>
+                            
+                            <div class="start-label">〈 Honkai: Star Rail 〉</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="footer-icons">
+                            <span class="static-icon">✒️</span>
+                            <span class="static-icon">💤</span>
+                            </div>
+                            <span class="module-count">🏛️</span>
+                        </div>
+                    </div>
+
+                    <div class="course-card">
+                        <div class="card-media">
+                            <img src="aqua.webp">
+                        </div>
+                        <div class="card-details">
+                            <h3 class="course-title">Aqua Hoshino</h3>
+                            <p class="course-code">(Gorou Amamiya)</p> <br>
+                            <p class="course-schedule"> "To me, being an actor is nothing more than a means to an end."</p>
+                            
+                            <div class="start-label">〈 Oshi no Ko 〉</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="footer-icons">
+                            <span class="static-icon">✒️</span>
+                            <span class="static-icon">💤</span>
+                            </div>
+                            <span class="module-count">🏛️</span>
+                        </div>
+                    </div>
+
+                    <div class="course-card">
+                        <div class="card-media">
+                            <img src="dazai.webp">
+                        </div>
+                        <div class="card-details">
+                            <h3 class="course-title">Osamu Dazai</h3>
+                            <p class="course-code">No Longer Human</p> <br>
+                            <p class="course-schedule"> "Stop feeling sorry for yourself. As long as you do, your life will be an unending nightmare."</p>
+                            
+                            <div class="start-label">〈 Bungo Stray Dogs 〉</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="footer-icons">
+                            <span class="static-icon">✒️</span>
+                            <span class="static-icon">💤</span>
+                            </div>
+                            <span class="module-count">🏛️</span>
+                        </div>
+                    </div>
+
+                    <div class="course-card">
+                        <div class="card-media">
+                            <img src="fyodo.webp">
+                        </div>
+                        <div class="card-details">
+                            <h3 class="course-title">Fyodor Dostoevsky</h3>
+                            <p class="course-code">Crime and Punishment</p> <br>
+                            <p class="course-schedule"> "People can be so simple. They truly believe they are thinking for themselves.  
+                                                        If they discover something themselves, they see value in that. 
+                                                        They don't want to think they're being led by the nose."</p>
+                            <div class="start-label">〈 Bungo Stray Dogs 〉</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="footer-icons">
+                            <span class="static-icon">✒️</span>
+                            <span class="static-icon">💤</span>
+                            </div>
+                            <span class="module-count">🏛️</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--ROW2-->
+                <div class="courses-row-grid">
+                    <div class="course-card">
+                        <div class="card-media">
+                            <img src="haitham.webp">
+                        </div>
+                        <div class="card-details">
+                            <h3 class="course-title">Alhaitham</h3>
+                            <p class="course-code">Vultur Volans</p> <br>
+                            <p class="course-schedule"> "Truth serves no master. Humankind is not a vehicle for knowledge, nor is knowledge the aim of humankind."</p>
+                            
+                            <div class="start-label">〈 Genshin Impact 〉</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="footer-icons">
+                            <span class="static-icon">✒️</span>
+                            <span class="static-icon">💤</span>
+                            </div>
+                            <span class="module-count">🏛️</span>
+                        </div>
+                    </div>
+
+                    <div class="course-card">
+                        <div class="card-media">
+                            <img src="hikaru.webp">
+                        </div>
+                        <div class="card-details">
+                            <h3 class="course-title">"Hikaru"</h3>
+                            <p class="course-code">Nonuki-sama</p> <br>
+                            <p class="course-schedule"> "This is the first time I've lived as a human. School, friends, ice cream – I'm enjoyin' all of them for the first time. I may be borrowin' this body an' personality... but my feelings for you are real... So please... I don't want to kill you."</p>
+                            
+                            <div class="start-label">〈 The Summer Hikaru Died 〉</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="footer-icons">
+                            <span class="static-icon">✒️</span>
+                            <span class="static-icon">💤</span>
+                            </div>
+                            <span class="module-count">🏛️</span>
+                        </div>
+                    </div>
+
+                    <div class="course-card">
+                        <div class="card-media">
+                            <img src="ivan.webp">
+                        </div>
+                        <div class="card-details">
+                            <h3 class="course-title">Ivan</h3>
+                            <p class="course-code">Black Sorrow</p> <br>
+                            <p class="course-schedule"> "Thank you for being the Victim of my Shallow emotions"</p>
+                            
+                            <div class="start-label">〈 Alien Stage 〉</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="footer-icons">
+                            <span class="static-icon">✒️</span>
+                            <span class="static-icon">💤</span>
+                            </div>
+                            <span class="module-count">🏛️</span>
+                        </div>
+                    </div>
+
+                    <div class="course-card">
+                        <div class="card-media">
+                            <img src="jinhyeong.webp">
+                        </div>
+                        <div class="card-details">
+                            <h3 class="course-title">Woo Jinhyeong</h3>
+                            <p class="course-code"></p> <br>
+                            <p class="course-schedule"> </p>
+                            <div class="start-label">〈 One-Room TA 〉</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="footer-icons">
+                            <span class="static-icon">✒️</span>
+                            <span class="static-icon">💤</span>
+                            </div>
+                            <span class="module-count">🏛️</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--ROW3-->
+                <div class="courses-row-grid">
+                    <div class="course-card">
+                        <div class="card-media">
+                            <img src="kaveh.jpg">
+                        </div>
+                        <div class="card-details">
+                            <h3 class="course-title">Kaveh</h3>
+                            <p class="course-code">Paradisaea</p> <br>
+                            <p class="course-schedule"> "The more power I wield, the more things I can accomplish. Even if achieving my goals comes at a cost, and even if all my hopes and dreams are built on pain and suffering... I don't want to turn back now."</p>
+                            
+                            <div class="start-label">〈 Genshin Impact 〉</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="footer-icons">
+                            <span class="static-icon">✒️</span>
+                            <span class="static-icon">💤</span>
+                            </div>
+                            <span class="module-count">🏛️</span>
+                        </div>
+                    </div>
+
+                    <div class="course-card">
+                        <div class="card-media">
+                            <img src="kdj.webp">
+                        </div>
+                        <div class="card-details">
+                            <h3 class="course-title">Kim Dokja</h3>
+                            <p class="course-code">Demon King of Salvation / Oldest Dream</p> <br>
+                            <p class="course-schedule">"I'll finish your story."</p>
+                            
+                            <div class="start-label">〈 Omniscient Reader's Viewpoint 〉</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="footer-icons">
+                            <span class="static-icon">✒️</span>
+                            <span class="static-icon">💤</span>
+                            </div>
+                            <span class="module-count">🏛️</span>
+                        </div>
+                    </div>
+
+                    <div class="course-card">
+                        <div class="card-media">
+                            <img src="langa.jpg">
+                        </div>
+                        <div class="card-details">
+                            <h3 class="course-title">Langa Hasegawa</h3>
+                            <p class="course-code">Snow</p> <br>
+                            <p class="course-schedule"> "Reki, My love..."
+                                <br> "..Of Skateboarding is because of you."
+                            </p>
+                            
+                            <div class="start-label">〈 SK8 the Infinity 〉</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="footer-icons">
+                            <span class="static-icon">✒️</span>
+                            <span class="static-icon">💤</span>
+                            </div>
+                            <span class="module-count">🏛️</span>
+                        </div>
+                    </div>
+
+                    <div class="course-card">
+                        <div class="card-media">
+                            <img src="lohen.jpg">
+                        </div>
+                        <div class="card-details">
+                            <h3 class="course-title">Lohen</h3>
+                            <p class="course-code">Lupus Miles</p><br>
+                            <p class="course-schedule">"I kinda like to savor the pain. It reminds me that I'm alive, unlike my enemies, who feel nothing at all."</p>
+                            <div class="start-label">〈 Genshin Impact 〉</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="footer-icons">
+                            <span class="static-icon">✒️</span>
+                            <span class="static-icon">💤</span>
+                            </div>
+                            <span class="module-count">🏛️</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--ROW4-->
+                <div class="courses-row-grid">
+                    <div class="course-card">
+                        <div class="card-media">
+                            <img src="nikolai.webp">
+                        </div>
+                        <div class="card-details">
+                            <h3 class="course-title">Nikolai Gogol</h3>
+                            <p class="course-code">The Overcoat</p> <br>
+                            <p class="course-schedule"> "A quiz that just gives away the answers is boring, isn't it?"</p>
+                            
+                            <div class="start-label">〈 Bungo Stray Dogs 〉</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="footer-icons">
+                            <span class="static-icon">✒️</span>
+                            <span class="static-icon">💤</span>
+                            </div>
+                            <span class="module-count">🏛️</span>
+                        </div>
+                    </div>
+
+                    <div class="course-card">
+                        <div class="card-media">
+                            <img src="omori.webp">
+                        </div>
+                        <div class="card-details">
+                            <h3 class="course-title">Sunny</h3>
+                            <p class="course-code"></p> <br>
+                            <p class="course-schedule"></p>
+                            
+                            <div class="start-label">〈 Omori 〉</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="footer-icons">
+                            <span class="static-icon">✒️</span>
+                            <span class="static-icon">💤</span>
+                            </div>
+                            <span class="module-count">🏛️</span>
+                        </div>
+                    </div>
+
+                    <div class="course-card">
+                        <div class="card-media">
+                            <img src="scara.webp">
+                        </div>
+                        <div class="card-details">
+                            <h3 class="course-title">Wanderer</h3>
+                            <p class="course-code">Eons Adrift</p> <br>
+                            <p class="course-schedule"> "I'm well aware that many, many people will want to seek me out and settle the grudges they've built against me in my past life. Fine by me — come one, come all, I say. As a matter of fact, I'm somewhat looking forward to it."</p>
+                            
+                            <div class="start-label">〈 Genshin Impact 〉</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="footer-icons">
+                            <span class="static-icon">✒️</span>
+                            <span class="static-icon">💤</span>
+                            </div>
+                            <span class="module-count">🏛️</span>
+                        </div>
+                    </div>
+
+                    <div class="course-card">
+                        <div class="card-media">
+                            <img src="smc.webp">
+                        </div>
+                        <div class="card-details">
+                            <h3 class="course-title">Shadow Milk Cookie</h3>
+                            <p class="course-code">Lord of Lies / Fount of Knowledge</p><br>
+                            <p class="course-schedule">"There is nobody who can resist to deceit."</p>
+                            <div class="start-label">〈 Cookie Run Kingdom 〉</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="footer-icons">
+                            <span class="static-icon">✒️</span>
+                            <span class="static-icon">💤</span>
+                            </div>
+                            <span class="module-count">🏛️</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--ROW5-->
+                <div class="courses-row-grid">
+                    <div class="course-card">
+                        <div class="card-media">
+                            <img src="sunday.jpg">
+                        </div>
+                        <div class="card-details">
+                            <h3 class="course-title">Sunday</h3>
+                            <p class="course-code">Halovian / Emanator of Harmony</p> <br>
+                            <p class="course-schedule"> "There's always a paradise that needs to be built. That vow is like the sun in the sky — perhaps I'll melt and fall before reaching it... But some hardships I must endure." </p>
+                            
+                            <div class="start-label">〈 Honkai: Star Rail 〉</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="footer-icons">
+                            <span class="static-icon">✒️</span>
+                            <span class="static-icon">💤</span>
+                            </div>
+                            <span class="module-count">🏛️</span>
+                        </div>
+                    </div>
+
+                    <div class="course-card">
+                        <div class="card-media">
+                            <img src="suohayato.webp">
+                        </div>
+                        <div class="card-details">
+                            <h3 class="course-title">Suo Hayato</h3>
+                            <p class="course-code"></p> <br>
+                            <p class="course-schedule"></p>
+                            
+                            <div class="start-label">〈 Wind Breaker 〉</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="footer-icons">
+                            <span class="static-icon">✒️</span>
+                            <span class="static-icon">💤</span>
+                            </div>
+                            <span class="module-count">🏛️</span>
+                        </div>
+                    </div>
+
+                    <div class="course-card">
+                        <div class="card-media">
+                            <img src="toya.webp">
+                        </div>
+                        <div class="card-details">
+                            <h3 class="course-title">Toya Aoyagi</h3>
+                            <p class="course-code">VIVID Bad Squad</p> <br>
+                            <p class="course-schedule"> "I want to surpass that night... and witness a scenery I've never seen before with my own eyes."</p>
+                            
+                            <div class="start-label">〈 Project SEKAI 〉</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="footer-icons">
+                            <span class="static-icon">✒️</span>
+                            <span class="static-icon">💤</span>
+                            </div>
+                            <span class="module-count">🏛️</span>
+                        </div>
+                    </div>
+
+                    <div class="course-card">
+                        <div class="card-media">
+                            <img src="venti.png">
+                        </div>
+                        <div class="card-details">
+                            <h3 class="course-title">Venti</h3>
+                            <p class="course-code">Carmen Dei</p><br>
+                            <p class="course-schedule">"The wind shapes the dunes, reaps the clouds, and the moon rises as the tide falls. Freedom is a wind that blows through the land. No one can bind it, and neither can I."</p>
+                            <div class="start-label">〈 Genshin Impact 〉</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="footer-icons">
+                            <span class="static-icon">✒️</span>
+                            <span class="static-icon">💤</span>
+                            </div>
+                            <span class="module-count">🏛️</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!--fndom-->
+        <div id="groups" class="content-section">
+            <header class="top-header">
+            <h1 class="header-title">Fandoms the Creator Consumes (FCC)</h1>
+                <div class="header-actions">
+                    <div class="search-box">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" placeholder="In Honor of Anki">
+                    </div>
+                
+                    <div class="profile-group">
+                        <div class="icon-badge">📩<span class="badge">67</span></div>
+                        <div class="icon-badge">🔔<span class="badge">67</span></div>
+                        <span class="profile-name">Dead Anki</span>
+                        <div class="profile-avatar">DA</div>
+                    </div>
+                </div>
+            </header>
+            <div class="dashboard-container">
+
+                <!--alst-->
+                <div class="dashboard-grid">
+                    <main class="left-column">
+                        <div class="announcement-card">    
+                            <div class="card-header">
+                                <span>Alien Stage</span>
+                                <div class="card-controls">📚 💤</div>
+                            </div>
+                            
+                            <div class="card-body">    
+                                <div class="hero-panel">
+                                    <span class="badge-red">R O U N D 6</span>
+                                    <h2>「 C U R E 」<br>(VIVINOS - ALNST Original Soundtrack)</h2>
+                                    <p class="date">Premiered on April 5, 2024</p>
+                                    <p class="desc">
+                                        Vocal by AKUGETSU & Park Byeonghoon
+                                    </p>
+                                </div>
+                                
+                                <div class="info-panel">
+                                    <p style="text-align: center;">
+                                        Lyrics by : Studio LICO / Manju ---
+                                        Composed & Arranged by : Studio LICO / Choi Yongsu ---
+                                        Guitar by : Choi Yongsu --- Bass by : Lee Gyutae ---
+                                        MIDI Programmed by : Choi Yongsu --- Recorded by : Jo Junghyun @JD Studio ---
+                                        Mixed & Mastered by : Studio LICO --- Music Director : Park ByungDae ---
+                                        Project Manager : Do Sungil / Xushiyuan --- Director : VIVINOS 
+                                        Co-Director : QMENG --- Assistant Director : CALLNONG ---
+                                        Animation Producer : Heun Ju / Lee PD --- BG Director : HARU ---
+                                        BG : Kim Sujeong --- Animation : QMENG / CALLNONG/ HARU / 140 / Hwang Sihyeon / Yeoniuen
+                                        --- Technical Director & Conpositor : SUN LEE --- Executive Producer : Shin Hee Young / Choi Jun
+                                        --- Producer : KANG --- Presented & Music Produced by STUDIO LICO
+                                    </p>
+                                    <p class="footer-help">For more information, please watch 
+                                        <a href="https://youtube.com/playlist?list=PLQ-JZOYFII4dHqeSu6yeGj-30sZohX_oX&si=rG6SZJzeWmISwIe9" 
+                                        target="_blank" class="email">ALIEN STAGE</a> 
+                                        by VIVINOS on YouTube
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </main>
+
+                    <aside class="right-column">
+                        <div class="aside-picture-box">
+                            <img src="cure.jpg" alt="Dashboard Image">
+                        </div>
+                    </aside>
+                </div>
+                <!--bsd-->
+                <div class="dashboard-grid">
+                    <main class="left-column">
+                        <div class="announcement-card">    
+                            <div class="card-header">
+                                <span>Bungo Stray Dogs</span>
+                                <div class="card-controls">📚 💤</div>
+                            </div>
+                            
+                            <div class="card-body">    
+                                <div class="hero-panel">
+                                    <span class="badge-red">L I G H T _ N O V E L _ # 8</span>
+                                    <h2>「 S T O R M B R I N G E R 」<br>(Bungo Stray Dogs)</h2>
+                                    <p class="date">Premiered on February 27, 2021</p>
+                                    <p class="desc">
+                                        Illustrated by Shiwasu Hoshikawa
+                                    </p>
+                                </div>
+                                
+                                <div class="info-panel">
+                                    <p style="text-align: center;">
+
+                                    </p>
+                                    <p class="footer-help">For more information, please read 
+                                        <a href="https://docs.google.com/document/d/1vIRA4_rOylIojDjqfTx46UUNG0intomM/edit?usp=sharing&ouid=117706942688990136653&rtpof=true&sd=true" 
+                                        target="_blank" class="email">STORMBRINGER</a> 
+                                        by Kafka Asagiri
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </main>
+
+                    <aside class="right-column">
+                        <div class="aside-picture-box">
+                            <img src="stormbringer.webp" alt="Dashboard Image">
+                        </div>
+                    </aside>
+                </div>
+                <!--twst-->
+                <div class="dashboard-grid">
+                    <main class="left-column">
+                        <div class="announcement-card">    
+                            <div class="card-header">
+                                <span>Twisted Wonderland</span>
+                                <div class="card-controls">📚 💤</div>
+                            </div>
+                            
+                            <div class="card-body">    
+                                <div class="hero-panel">
+                                    <span class="badge-red">T H E _ M A N G A</span>
+                                    <h2>「 B O O K _ O F _ H E A R T S L A B Y U L 」<br>(Twisted Wonderland - The Manga)</h2>
+                                    <p class="date">Premiered on March 18, 2021</p>
+                                    <p class="desc">
+                                        Produced by Monthly G-Fantasy Issue
+                                    </p>
+                                </div>
+                                
+                                <div class="info-panel">
+                                    <p style="text-align: center;">
+
+                                    </p>
+                                    <p class="footer-help">For more information, please read 
+                                        <span class="email">Twisted Wonderland - The Manga, Book of Heartslabyul</span> 
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </main>
+
+                    <aside class="right-column">
+                        <div class="aside-picture-box">
+                            <img src="twst.webp" alt="Dashboard Image">
+                        </div>
+                    </aside>
+                </div>
+                <!--wtdsik-->
+                <div class="dashboard-grid">
+                    <main class="left-column">
+                        <div class="announcement-card">    
+                            <div class="card-header">
+                                <span>Welcome to Demon School, Iruma-kun!</span>
+                                <div class="card-controls">📚 💤</div>
+                            </div>
+                            
+                            <div class="card-body">    
+                                <div class="hero-panel">
+                                    <span class="badge-red">M A I R U M A</span>
+                                    <h2>「 I R U M A F I A _ E D I T I O N 」<br>(Mairimashita! Iruma-kun)</h2>
+                                    <p class="date">Premiered on September 12, 2023</p>
+                                    <p class="desc">
+                                        Produced by Hiroja
+                                    </p>
+                                </div>
+                                
+                                <div class="info-panel">
+                                    <p style="text-align: center;">
+
+                                    </p>
+                                    <p class="footer-help">For more information, please read 
+                                        <a href="https://comix.to/title/mjk5z-welcome-to-demon-school-iruma-kun-irumafia-edition" 
+                                        target="_blank" class="email">Welcome to Demon School! Iruma-kun: IruMafia Edition</a> 
+                                        by publisher Kodansha
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </main>
+
+                    <aside class="right-column">
+                        <div class="aside-picture-box">
+                            <img src="irumafia.webp" alt="Dashboard Image">
+                        </div>
+                    </aside>
+                </div>                
+            </div>
+        </div>
+
+        <!--media-->
+        <div id="catalog" class="content-section">
+            <header class="top-header">
+            <h1 class="header-title">Regrator Media</h1>
+                <div class="header-actions">
+                    <div class="search-box">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" placeholder="Goodbye, Feofan.">
+                    </div>
+                
+                    <div class="profile-group">
+                        <div class="icon-badge">📩<span class="badge">02</span></div>
+                        <div class="icon-badge">🔔<span class="badge">09</span></div>
+                        <span class="profile-name">Zandik</span>
+                        <div class="profile-avatar">Z</div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="courses-section-wrapper">
+                <!--ROW 1-->
+                <div class="courses-row-grid">
+                    <div class="course-card">
+                        <div class="card-media">
+                            <img src="Screenshot 2026-05-23 165330.png">
+                        </div>
+                        <div class="card-details">
+                            <h3 class="course-title">[ The Regrator ]</h3>
+                            <p class="course-code">Pantalone</p> <br>
+                            <p class="course-schedule">Feofan Sergeyevich Veksel</p>
+                            
+                            <div class="start-label">〈 9th of the Fatui Harbingers 〉</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="footer-icons">
+                            <span class="static-icon">🪙</span>
+                            <span class="static-icon">💰</span>
+                            </div>
+                            <span class="module-count">🏛️</span>
+                        </div>
+                    </div>
+
+                    <div class="course-card">
+                        <div class="card-media">
+                            <img src="Screenshot 2026-05-23 170259.png">
+                        </div>
+                        <div class="card-details">
+                            <h3 class="course-title">[ The Regrator ]</h3>
+                            <p class="course-code">Pantalone</p> <br>
+                            <p class="course-schedule">Feofan Sergeyevich Veksel</p>
+                            
+                            <div class="start-label">〈 9th of the Fatui Harbingers 〉</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="footer-icons">
+                            <span class="static-icon">🪙</span>
+                            <span class="static-icon">💰</span>
+                            </div>
+                            <span class="module-count">🏛️</span>
+                        </div>
+                    </div>
+
+                    <div class="course-card">
+                        <div class="card-media">
+                            <img src="Screenshot 2026-05-23 170638.png">
+                        </div>
+                        <div class="card-details">
+                            <h3 class="course-title">[ The Regrator ]</h3>
+                            <p class="course-code">Pantalone</p> <br>
+                            <p class="course-schedule">Feofan Sergeyevich Veksel</p>
+                            
+                            <div class="start-label">〈 9th of the Fatui Harbingers 〉</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="footer-icons">
+                            <span class="static-icon">🪙</span>
+                            <span class="static-icon">💰</span>
+                            </div>
+                            <span class="module-count">🏛️</span>
+                        </div>
+                    </div>
+
+                    <div class="course-card">
+                        <div class="card-media">
+                            <img src="Screenshot 2026-05-28 224246.png">
+                        </div>
+                        <div class="card-details">
+                            <h3 class="course-title">[ The Regrator ]</h3>
+                            <p class="course-code">Pantalone</p> <br>
+                            <p class="course-schedule">Feofan Sergeyevich Veksel</p>
+                            
+                            <div class="start-label">〈 9th of the Fatui Harbingers 〉</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="footer-icons">
+                            <span class="static-icon">🪙</span>
+                            <span class="static-icon">💰</span>
+                            </div>
+                            <span class="module-count">🏛️</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--ROW 2-->
+                <div class="courses-row-grid">
+                    <div class="course-card">
+                        <div class="card-media">
+                            <img src="Screenshot 2026-05-28 224403.png">
+                        </div>
+                        <div class="card-details">
+                            <h3 class="course-title">[ The Regrator ]</h3>
+                            <p class="course-code">Pantalone</p> <br>
+                            <p class="course-schedule">Feofan Sergeyevich Veksel</p>
+                            
+                            <div class="start-label">〈 9th of the Fatui Harbingers 〉</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="footer-icons">
+                            <span class="static-icon">🪙</span>
+                            <span class="static-icon">💰</span>
+                            </div>
+                            <span class="module-count">🏛️</span>
+                        </div>
+                    </div>
+
+                    <div class="course-card">
+                        <div class="card-media">
+                            <img src="Screenshot 2026-05-28 224531.png">
+                        </div>
+                        <div class="card-details">
+                            <h3 class="course-title">[ The Regrator ]</h3>
+                            <p class="course-code">Pantalone</p> <br>
+                            <p class="course-schedule">Feofan Sergeyevich Veksel</p>
+                            
+                            <div class="start-label">〈 9th of the Fatui Harbingers 〉</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="footer-icons">
+                            <span class="static-icon">🪙</span>
+                            <span class="static-icon">💰</span>
+                            </div>
+                            <span class="module-count">🏛️</span>
+                        </div>
+                    </div>
+
+                    <div class="course-card">
+                        <div class="card-media">
+                            <img src="Screenshot 2026-05-28 224603.png">
+                        </div>
+                        <div class="card-details">
+                            <h3 class="course-title">[ The Regrator ]</h3>
+                            <p class="course-code">Pantalone</p> <br>
+                            <p class="course-schedule">Feofan Sergeyevich Veksel</p>
+                            
+                            <div class="start-label">〈 9th of the Fatui Harbingers 〉</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="footer-icons">
+                            <span class="static-icon">🪙</span>
+                            <span class="static-icon">💰</span>
+                            </div>
+                            <span class="module-count">🏛️</span>
+                        </div>
+                    </div>
+
+                    <div class="course-card">
+                        <div class="card-media">
+                            <img src="Screenshot 2026-05-28 224816.png">
+                        </div>
+                        <div class="card-details">
+                            <h3 class="course-title">[ The Regrator ]</h3>
+                            <p class="course-code">Pantalone</p> <br>
+                            <p class="course-schedule">Feofan Sergeyevich Veksel</p>
+                            
+                            <div class="start-label">〈 9th of the Fatui Harbingers 〉</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="footer-icons">
+                            <span class="static-icon">🪙</span>
+                            <span class="static-icon">💰</span>
+                            </div>
+                            <span class="module-count">🏛️</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!--ROW 3-->
+                <div class="courses-row-grid">
+                    <div class="course-card">
+                        <div class="card-media">
+                            <img src="Screenshot 2026-05-28 224919.png">
+                        </div>
+                        <div class="card-details">
+                            <h3 class="course-title">[ The Regrator ]</h3>
+                            <p class="course-code">Pantalone</p> <br>
+                            <p class="course-schedule">Feofan Sergeyevich Veksel</p>
+                            
+                            <div class="start-label">〈 9th of the Fatui Harbingers 〉</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="footer-icons">
+                            <span class="static-icon">🪙</span>
+                            <span class="static-icon">💰</span>
+                            </div>
+                            <span class="module-count">🏛️</span>
+                        </div>
+                    </div>
+
+                    <div class="course-card">
+                        <div class="card-media">
+                            <img src="Screenshot 2026-05-29 000824.png">
+                        </div>
+                        <div class="card-details">
+                            <h3 class="course-title">[ The Regrator ]</h3>
+                            <p class="course-code">Pantalone</p> <br>
+                            <p class="course-schedule">Feofan Sergeyevich Veksel</p>
+                            
+                            <div class="start-label">〈 9th of the Fatui Harbingers 〉</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="footer-icons">
+                            <span class="static-icon">🪙</span>
+                            <span class="static-icon">💰</span>
+                            </div>
+                            <span class="module-count">🏛️</span>
+                        </div>
+                    </div>
+
+                    <div class="course-card">
+                        <div class="card-media">
+                            <img src="Screenshot 2026-05-29 001217.png">
+                        </div>
+                        <div class="card-details">
+                            <h3 class="course-title">[ The Regrator ]</h3>
+                            <p class="course-code">Pantalone</p> <br>
+                            <p class="course-schedule">Feofan Sergeyevich Veksel</p>
+                            
+                            <div class="start-label">〈 9th of the Fatui Harbingers 〉</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="footer-icons">
+                            <span class="static-icon">🪙</span>
+                            <span class="static-icon">💰</span>
+                            </div>
+                            <span class="module-count">🏛️</span>
+                        </div>
+                    </div>
+
+                    <div class="course-card">
+                        <div class="card-media">
+                            <img src="Screenshot 2026-05-29 001354.png">
+                        </div>
+                        <div class="card-details">
+                            <h3 class="course-title">[ The Regrator ]</h3>
+                            <p class="course-code">Pantalone</p> <br>
+                            <p class="course-schedule">Feofan Sergeyevich Veksel</p>
+                            
+                            <div class="start-label">〈 9th of the Fatui Harbingers 〉</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="footer-icons">
+                            <span class="static-icon">🪙</span>
+                            <span class="static-icon">💰</span>
+                            </div>
+                            <span class="module-count">🏛️</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!--ROW 4-->
+                <div class="courses-row-grid">
+                    <div class="course-card">
+                        <div class="card-media">
+                            <img src="Screenshot 2026-05-29 185835.png">
+                        </div>
+                        <div class="card-details">
+                            <h3 class="course-title">[ The Regrator ]</h3>
+                            <p class="course-code">Pantalone</p> <br>
+                            <p class="course-schedule">Feofan Sergeyevich Veksel</p>
+                            
+                            <div class="start-label">〈 9th of the Fatui Harbingers 〉</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="footer-icons">
+                            <span class="static-icon">🪙</span>
+                            <span class="static-icon">💰</span>
+                            </div>
+                            <span class="module-count">🏛️</span>
+                        </div>
+                    </div>
+                    
+                    <div class="course-card">
+                        <div class="card-media">
+                            <img src="dotto.jpg">
+                        </div>
+                        <div class="card-details">
+                            <h3 class="course-title">[ Pantalone ]</h3>
+                            <p class="course-code">Feofan Sergeyevich Veksel</p> <br>
+                            <p class="course-schedule"></p>
+                            
+                            <div class="start-label">〈 9th of the Fatui Harbingers 〉</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="footer-icons">
+                            <span class="static-icon">🪙</span>
+                            <span class="static-icon">💰</span>
+                            </div>
+                            <span class="module-count">🏛️</span>
+                        </div>
+                    </div>
+
+                    <div class="course-card">
+                        <div class="card-media">
+                            <img src="Screenshot 2026-05-29 185922.png">
+                        </div>
+                        <div class="card-details">
+                            <h3 class="course-title">[ The Regrator ]</h3>
+                            <p class="course-code">Pantalone</p> <br>
+                            <p class="course-schedule">Feofan Sergeyevich Veksel</p>
+                            
+                            <div class="start-label">〈 9th of the Fatui Harbingers 〉</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="footer-icons">
+                            <span class="static-icon">🪙</span>
+                            <span class="static-icon">💰</span>
+                            </div>
+                            <span class="module-count">🏛️</span>
+                        </div>
+                    </div>
+
+                    <div class="course-card">
+                        <div class="card-media">
+                            <img src="lone.jpg">
+                        </div>
+                        <div class="card-details">
+                            <h3 class="course-title">[ Dottore ]</h3>
+                            <p class="course-code">Zandik</p> <br>
+                            <p class="course-schedule"></p>
+                            
+                            <div class="start-label">〈 2nd of the Fatui Harbingers 〉</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="footer-icons">
+                            <span class="static-icon">🪙</span>
+                            <span class="static-icon">💰</span>
+                            </div>
+                            <span class="module-count">🏛️</span>
+                        </div>
+                    </div>
+                    <div class="course-card">
+                        <div class="card-media">
+                            <img src="Screenshot 2026-05-29 185955.png">
+                        </div>
+                        <div class="card-details">
+                            <h3 class="course-title">[ The Regrator ]</h3>
+                            <p class="course-code">Pantalone</p> <br>
+                            <p class="course-schedule">Feofan Sergeyevich Veksel</p>
+                            
+                            <div class="start-label">〈 9th of the Fatui Harbingers 〉</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="footer-icons">
+                            <span class="static-icon">🪙</span>
+                            <span class="static-icon">💰</span>
+                            </div>
+                            <span class="module-count">🏛️</span>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <!--HM-->
+        <div id="users" class="content-section">
+            <header class="top-header">
+            <h1 class="header-title">People who've Helped / List of References</h1>
+                <div class="header-actions">
+                    <div class="search-box">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" placeholder="Honorable Mentions">
+                    </div>
+                
+                    <div class="profile-group">
+                        <div class="icon-badge">📩<span class="badge">06</span></div>
+                        <div class="icon-badge">🔔<span class="badge">07</span></div>
+                        <span class="profile-name">Luciel Yoizuki</span>
+                        <div class="profile-avatar">LV</div>
+                    </div>
+                </div>
+            </header>
+            <section style="margin: 10px; padding: 15px; background: #0a2540; border-radius: 8px;">
+                <h2 style="color: #ffff13;">Honorable Mentions</h2>
+                <p>
+                    anki, rury, (anon), атлас, stella, zai, joax, ezky, Kiezhen Yi STUDIOS ( Anaximander[Me], Luciel[Myself], and Phai[I] )
+                </p>
+            </section>
+            <section style="margin: 10px; padding: 15px; background: #0a2540; border-radius: 8px;">
+                <h2 style="color: #ffff13;">List of References</h2>
+                <p>
+                    Home Page: KMS(this was intentional), KYS(also intentional), ELMS(avoiding copyright infringement), Destroying A World That Doesn't Exist <br>
+                    Creator Info: Anaximander Veran(online alias), Luciel Yoizuki(character from own creation), 08 01(easter egg bday) <br>
+                    Kin List: KMS, 3.14159(digits of Pi), 1.618(Golden Ratio), Anaximander Veran <br>
+                    Fandoms: 67, Dead Anki, FCC(another intentional) THIS WHOLE SECTION IS A REFERENCE AND IN HONOR OF ANKI <br>
+                    Media: This whole section is just Pantalone/Regrator. Some sneaks of Dottolone. Goodbye, Feofan. // 02 09(easter egg fatui rankings).<br>
+                    <br>
+                    Contacts and Socials: Searching For A World That Doesn't Exist <br>
+                    Help: Destroying A World That Doesn't Exist 
+                </p>
+            </section>
+            <p style="text-align: end;">
+                This is Brought to You by: Kiezen Yi STUDIOS
+            </p>
+                
+        </div>
+
+        <!--contact-->
+        <div id="shortcuts" class="content-section">
+            <header class="top-header">
+            <h1 class="header-title">Contacts and Socials</h1>
+                <div class="header-actions">
+                    <div class="search-box">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" placeholder="Searching For A World That Doesn't Exist">
+                    </div>
+                
+                    <div class="profile-group">
+                        <div class="icon-badge">📩</div>
+                        <div class="icon-badge">🔔</div>
+                        <span class="profile-name">AveryTheMayo</span>
+                        <div class="profile-avatar">AM</div>
+                    </div>
+                </div>
+            </header>
+            T H I S _ I S _ A _ W O R K _ I N _ P R O G R E S S . . . P L E A S E _ W A I T _ F O R _ F U R T H E R _ N O T I C E
+        </div>
+        <!--help-->
+        <div id="help" class="content-section">
+            <header class="top-header">
+            <h1 class="header-title">Information</h1>
+                <div class="header-actions">
+                    <div class="search-box">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" placeholder="Destroying A World That Doesn't Exist">
+                    </div>
+                
+                    <div class="profile-group">
+                        <div class="icon-badge">📩</div>
+                        <div class="icon-badge">🔔</div>
+                        <span class="profile-name">Derek / D3rlord3</span>
+                        <div class="profile-avatar">DD</div>
+                    </div>
+                </div>
+            </header>
+            T H I S _ I S _ A _ W O R K _ I N _ P R O G R E S S . . . P L E A S E _ W A I T _ F O R _ F U R T H E R _ N O T I C E
+        </div>
+    </div>
+
+    <script>
+        const navItems = document.querySelectorAll('.nav-item');
+        const sections = document.querySelectorAll('.content-section');
+
+        navItems.forEach(item => {
+            item.addEventListener('click', (event) => {
+            event.preventDefault();
+            navItems.forEach(nav => nav.classList.remove('active'));
+            item.classList.add('active');
+            sections.forEach(section => section.classList.remove('active'));
+
+            const targetId = item.getAttribute('data-target');
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+            });
+        });
+
+        const subTabs = document.querySelectorAll('.sub-nav .tab');
+        const subPanels = document.querySelectorAll('.sub-content-panel');
+
+        subTabs.forEach(tab => {
+            tab.addEventListener('click', (event) => {
+            event.preventDefault();
+            
+            subTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            subPanels.forEach(panel => panel.classList.remove('active'));
+            const targetPanelId = tab.getAttribute('data-subtarget');
+            const targetPanel = document.getElementById(targetPanelId);
+            if (targetPanel) {
+                targetPanel.classList.add('active');
+            }
+            });
+        });
+        document.addEventListener('DOMContentLoaded', () => {
+        const audioFile = document.getElementById('invisible-bg-audio');
+
+        const startAudioLoop = () => {
+            if (audioFile && audioFile.paused) {
+            audioFile.play()
+                .then(() => {
+                document.removeEventListener('click', startAudioLoop);
+                document.removeEventListener('keydown', startAudioLoop);
+                })
+                .catch(error => {
+                console.log("Playback delayed until a clear user gesture is registered:", error);
+                });
+            }
+        };
+
+        document.addEventListener('click', startAudioLoop);
+        document.addEventListener('keydown', startAudioLoop);
+        });
+    </script>
+
+</body>
+
+</html>
